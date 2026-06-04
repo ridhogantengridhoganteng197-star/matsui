@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPMB 2026 - SMKN 1 Bombana</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background: #eefaff;
+      padding: 20px;
+    }
+
+    .container{
+      max-width: 1100px;
+      margin: auto;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Navbar / Navigasi Menu */
+    nav {
+      background: #003366;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    nav a:hover, nav a.active {
+      background: #71d0ff;
+      color: #003366;
+      border-radius: 5px;
+    }
+
+    /* Hero Section */
+    .hero{
+      position: relative;
+      height: 380px;
+      background: url('gerbang sekolah.jpeg') center/cover;
+    }
+
+    .overlay{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 51, 102, 0.4);
+    }
+
+    .top-text{
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      z-index: 2;
+      color: #003366;
+    }
+
+    .logo{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;
+      z-index: 2;
+    }
+
+    .title{
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .title h1{
+      font-size: 55px;
+      color: #4de7ff;
+      text-shadow: 3px 3px #003366;
+      line-height: 1.1;
+    }
+
+    /* Konten Halaman */
+    .page {
+      display: none; /* Sembunyikan semua halaman secara default */
+      padding: 40px 30px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .page.active-page {
+      display: block; /* Hanya tampilkan halaman aktif */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2.page-title {
+      color: #003366;
+      border-bottom: 3px solid #71d0ff;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    /* Tata Letak & Kartu */
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card{
+      background: #e6f7ff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h3{
+      background: #71d0ff;
+      padding: 10px;
+      border-radius: 15px;
+      text-align: center;
+      color: #003366;
+      margin-bottom: 15px;
+    }
+
+    .card ul, .profile-content ul {
+      padding-left: 20px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* Detail Khusus Halaman */
+    .profile-content p {
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .form-daftar {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: auto;
+      background: #e6f7ff;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group input, .form-group select {
+      padding: 10px;
+      border: 1px solid #71d0ff;
+      border-radius: 8px;
+    }
+
+    .btn-submit {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #71d0ff;
+      color: #003366;
+    }
+
+    /* Footer */
+    .footer{
+      background: #71d0ff;
+      padding: 25px;
+      text-align: center;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .social{
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    @media(max-width:768px){
+      nav a { padding: 10px 12px; font-size: 14px; }
+      .title h1{ font-size: 35px; }
+      .hero{ height: 280px; }
+    }
+    .hero {
+    position: relative;
+    width: 100%;
+    height: 450px; /* Atur tinggi sesuai selera */
+    background-image: url('gerbang.jpeg'); /* Pastikan nama file sama */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Warna teks */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Gelap transparan agar teks terbaca */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Agar teks berada di atas overlay */
+}
+
+.title h1 {
+    font-size: 50px;
+    margin: 0;
+}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HERO HEADER -->
+    <div class="hero">
+      <div class="overlay"></div>
+      <div class="top-text">SMK BISA. SMK HEBAT.</div>
+      <div class="title">
+        <h1>SPMB 2026<br>SMKN 1 BOMBANA</h1>
+      </div>
+    </div>
+
+    <!-- STRUKTUR NAVIGASI (6 HALAMAN) -->
+    <nav>
+      <a onclick="switchPage('beranda')" id="nav-beranda" class="active">Beranda</a>
+      <a onclick="switchPage('profil')" id="nav-profil">Profil</a>
+      <a onclick="switchPage('jurusan')" id="nav-jurusan">Jurusan</a>
+      <a onclick="switchPage('ekskul')" id="nav-ekskul">Ekstrakurikuler</a>
+      <a onclick="switchPage('syarat')" id="nav-syarat">Syarat</a>
+      <a onclick="switchPage('kontak')" id="nav-kontak">Daftar & Kontak</a>
+    </nav>
+
+    <!-- HALAMAN 1: BERANDA -->
+    <div id="beranda" class="page active-page">
+      <h2 class="page-title">Selamat Datang di Website SPMB 2026</h2>
+      <div class="profile-content">
+        <p>Selamat datang calon siswa-siswi terbaik bangsa di sistem Seleksi Penerimaan Murid Baru (SPMB) SMKN 1 Bombana Tahun Ajaran 2026/2027. Kami siap mencetak generasi yang kompeten, inovatif, dan siap kerja!</p>
+        <p>Gunakan menu navigasi di atas untuk menjelajahi profil sekolah kami, melihat jurusan yang tersedia, mengecek persyaratan berkas, hingga melakukan pendaftaran online.</p>
+        <br>
+        <div class="card" style="text-align: center; background: #003366; color: white;">
+          <h3 style="background:#71d0ff; color:#003366;">Pendaftaran Gelombang 1</h3>
+          <p style="color: white; margin-top: 10px;">Dibuka dari <b>22 juni 2026 s.d 1 Juli 2026</b></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HALAMAN 2: PROFIL -->
+    <div id="profil" class="page">
+      <h2 class="page-title">Profil Sekolah</h2>
+      <div class="profile-content">
+        <h3>Visi</h3>
+        <p>"Menjadi Lembaga Pendidikan Kejuruan yang Menghasilkan Lulusan Berakhlak Mulia, Profesional, Unggul, dan Siap Bersaing Global."</p>
+        
+        <h3>Misi</h3>
+        <ul>
+          <li>Menanamkan nilai keimanan dan ketakwaan melalui kegiatan keagamaan.</li>
+          <li>Menyelenggarakan pembelajaran berbasis teknologi dan berstandar industri.</li>
+          <li>Menjalin kemitraan erat dengan Dunia Usaha dan Dunia Industri (DUDI).</li>
+          <li>Mengembangkan jiwa wirausaha yang kreatif dan mandiri pada seluruh siswa.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HALAMAN 3: JURUSAN -->
+    <div id="jurusan" class="page">
+      <h2 class="page-title">Kompetensi Keahlian (Jurusan)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>DKV</h3>
+          <p><b>Desain Komunikasi Visual:</b> Fokus pada keahlian desain grafis, ilustrasi, fotografi, videografi, dan periklanan digital.</p>
+        </div>
+        <div class="card">
+          <h3>ATPH</h3>
+          <p><b>Agribisnis Tanaman Pangan & Hortikultura:</b> Mempelajari teknik budidaya tanaman, pengolahan lahan modern, dan manajemen agribisnis.</p>
+        </div>
+        <div class="card">
+          <h3>TKRO</h3>
+          <p><b>Teknik Kendaraan Ringan Otomotif:</b> Keahlian perawatan mendalam, perbaikan mesin, kelistrikan kendaraan, dan teknologi otomotif roda empat.</p>
+        </div>
+        <div class="card">
+          <h3>TKJ</h3>
+          <p><b>Teknik Komputer & Jaringan:</b> Mempelajari perakitan komputer, instalasi jaringan internet, administrasi server, dan cyber security dasar.</p>
+        </div>
+        <div class="card">
+        </div>
+      </div>
+    </div>
+
+    <!-- HALAMAN 4: EKSTRAKURIKULER -->
+    <div id="ekskul" class="page">
+      <h2 class="page-title">Kegiatan Ekstrakurikuler</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Olahraga</h3>
+          <ul>
+            <li>Futsal</li>
+            <li>Voli</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Kebangsaan & Sosial</h3>
+          <ul>
+            <li>Pramuka (Wajib)</li>
+            <li>Paskibraka</li>
+            <li>PMR (Palang Merah Remaja)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Seni & Kreativitas</h3>
+          <ul>
+            <li>Seni Tari Tradisional / Modern</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- HALAMAN 5: SYARAT PENDAFTARAN -->
+    <div id="syarat" class="page">
+      <h2 class="page-title">Syarat Pendaftaran</h2>
+      <div class="card" style="max-width: 700px; margin: auto;">
+        <h3>Dokumen Wajib (Fisik / Unggah)</h3>
+        <ul>
+          <li>Surat Keterangan Lulus (SKL) / Surat Keterangan Hasil Ujian asli dari SMP/Sederajat.</li>
+          <li>Fotokopi Kartu Keluarga (KK) sebanyak 1 lembar.</li>
+          <li>Fotokopi Akta Kelahiran sebanyak 1 lembar.</li>
+          <li>Pas foto terbaru ukuran 3x4 (latar belakang merah) sebanyak 3 lembar.</li>
+          <li>Fotokopi KIP / KPS / PKH / KKS / KIS (Khusus jalur afirmasi/yang memiliki).</li> 
+           <li>fotokopi KTP 
+orang tua 
+        </ul>
+      </div>
+    </div>
+
+    <!-- HALAMAN 6: DAFTAR & KONTAK -->
+    <div id="kontak" class="page">
+      <h2 class="page-title">Formulir Pendaftaran & Kontak</h2>
+      
+        <div class="form-group">
+          <form action="https://docs.google.com/forms/d/e/PASTIKAN_LINK_FORM_KAMU_DI_SINI/formResponse" method="POST" class="form-daftar">
+  
+  <div class="form-group">
+    <label>Nama Lengkap Calon Siswa</label>
+    <input type="text" name="entry.11111111" placeholder="Masukkan nama lengkap Anda..." required>
+  </div>
+  
+  <div class="form-group">
+    <label>Asal Sekolah (SMP/MTs)</label>
+    <input type="text" name="entry.22222222" placeholder="Masukkan asal sekolah..." required>
+  </div>
+  
+  <div class="form-group">
+    <label>Pilihan Jurusan Utama</label>
+    <select name="entry.33333333" required>
+      <option value="">-- Pilih Jurusan --</option>
+      <option value="Teknik Komputer dan Jaringan (TKJ)">Teknik Komputer dan Jaringan (TKJ)</option>
+      <option value="Desain Komunikasi Visual (DKV)">Desain Komunikasi Visual (DKV)</option>
+      </option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Nomor WhatsApp Aktif</label>
+    <input type="tel" name="entry.44444444" placeholder="Contoh: 081234567xxx" required>
+  </div>
+  
+  <button type="submit" class="btn-submit">KIRIM PENDAFTARAN</button>
+</form>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>DAFTAR SEKARANG !!</p>
+      <div class="social">
+        Hubungi Kami via Media Sosial Resmi:<br>
+        <b>Instagram:</b> @smkn_01_bombana &nbsp;|&nbsp; <b>TikTok:</b> @smkn_01_bombana
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCRIPT UNTUK PINDAH HALAMAN SECARA INTERAKTIF -->
+  <script>
+    function switchPage(pageId) {
+      // 1. Sembunyikan semua elemen ber-class 'page'
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => {
+        page.classList.remove('active-page');
+      });
+
+      // 2. Tampilkan halaman yang dituju
+      document.getElementById(pageId).classList.add('active-page');
+
+      // 3. Matikan status aktif pada semua tombol navigasi menu
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // 4. Aktifkan tombol menu yang sedang dipilih
+      document.getElementById('nav-' + pageId).classList.add('active');
+      
+      // 5. Scroll otomatis ke area menu agar mempermudah pengguna hp
+      window.scrollTo({top: 300, behavior: 'smooth'});
+    }
+  </script>
+
+</body>
+</html>
